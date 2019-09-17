@@ -7,17 +7,16 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# R Markdown
-
-## problem 1
------------
-creating a data frame
-
 ```{r}
 library(tidyverse)
 
 ```
-### making data frame
+# problem 1
+
+## making data frame
+
+Create a data frame comprised of: a random sample of size 8 from a standard Normal distribution; a logical vector indicating whether elements of the sample are greater than 0; a character vector of length 8; a factor vector of length 8, with 3 different factor “levels”. Below shows the code and the result:
+
 ```{r}   
  problem_1=tibble(
    vec_numeric=rnorm(8),
@@ -32,21 +31,24 @@ problem_1
 ```
 
 
-now take the mean
+## now take the mean
+The result shows that numeric vairable and logical variable work while factor and character vairable can't get the mean.
 ```{r}
 mean(problem_1$vec_numeric)
 mean(problem_1$vec_logical)
 
 ```
 
-numeric vairable and logical variable work
-
 ```{r}
 mean(problem_1$vec_char)
 mean(problem_1$vec_fator)
 ```
 
-##convert chractor,logical and numeric variable into numeric
+## Conercion
+Tn the below steps:
+* convert the logical vector to numeric, and multiply the random sample by the result
+* convert the logical vector to a factor, and multiply the random sample by the result
+* convert the logical vector to a factor and then convert the result to numeric, and multiply the random sample by the result
 ```{r}
 as.numeric(problem_1$vec_char)
 as.numeric(problem_1$vec_logical)
@@ -55,7 +57,7 @@ as.numeric(problem_1$vec_factor)
 ```
 coercision can change charactor vairable into N/A but can't convert to numeric variable. So it can't be calculated mean. While for logical variable, when converting to numerica vairables, "True" and "False" can be covert to 1 and 0 respectively. For factor variable, they can convert to the number indicating its level.
 
-multiply by random sample
+## multiply by random sample
 ```{r}
 as.numeric(problem_1$vec_logical)*rnorm(8)
 ```
@@ -66,6 +68,58 @@ as.factor(problem_1$vec_logical)*rnorm(8)
 
 ```{r}
 as.numeric(as.factor(problem_1$vec_logical))*rnorm(8)
+```
+
+# Problem 2 Including Plots
+
+## Create data frame
+
+Create a data frame comprised of:
+x: a random sample of size 500 from a standard Normal distribution
+y: a random sample of size 500 from a standard Normal distribution
+A logical vector indicating whether x + y > 1
+A numeric vector created by coercing the above logical vector
+A factor vector created by coercing the above logical vector
+
+```{r}
+set.seed(2)
+  x=rnorm(500)
+  y=rnorm(500)
+  vec_logical_plot= x + y > 1
+  vec_num = as.numeric(vec_logical_plot)
+  vec_fact = as.factor(vec_logical_plot)
+  
+plot_df=tibble(x,y,vec_logical_plot,vec_fact,vec_num)
+
+head(plot_df)
+
+```
+
+the number of rows in `plot_df` is `r nrow(plot_df)` columns is `r ncol(plot_df)`. The mean of x in the dataframe is `r mean(pull(plot_df, x))`. The median of the sample is `r median(pull(plot_df, x))`.The standard deviation of the sample is`r sd(pull(plot_df,x))` The proportion of x+y>1 is `r percent=(vec_num/(x+y))`
+
+## create scatterplot
+
+color the logical vairable
+```{r}
+ggplot(plot_df, aes(x = x, y = y, color=vec_logical_plot)) + geom_point()
+
+```
+color the factor variable
+```{r}
+ggplot(plot_df, aes(x = x, y = y, color=vec_fact)) + geom_point()
+```
+colort the numeric varaible
+```{r}
+ggplot(plot_df, aes(x = x, y = y, color=vec_num)) + geom_point()
+```
+
+
+## export the this scatterplot
+
+
+```{r}
+ggsave("scatter_plot.pdf",height=4,width=6)
+
 ```
 
 
