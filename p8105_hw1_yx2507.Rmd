@@ -1,6 +1,6 @@
 ---
 title: "p8105_hw1_yx2507"
-output: html_document
+output: github_document
 ---
 
 ```{r setup, include=FALSE}
@@ -95,7 +95,7 @@ head(plot_df)
 
 ```
 
-the number of rows in `plot_df` is `r nrow(plot_df)` columns is `r ncol(plot_df)`. The mean of x in the dataframe is `r mean(pull(plot_df, x))`. The median of the sample is `r median(pull(plot_df, x))`.The standard deviation of the sample is`r sd(pull(plot_df,x))` The proportion of x+y>1 is `r percent=(vec_num/(x+y))`
+the number of rows in `plot_df` is `r nrow(plot_df)` columns is `r ncol(plot_df)`. The mean of x in the dataframe is `r mean(pull(plot_df, x))`. The median of the sample is `r median(pull(plot_df, x))`.The standard deviation of the sample is`r sd(pull(plot_df,x))` The proportion of x+y>1 is `r (vec_num/(x+y>1))`
 
 ## create scatterplot
 
