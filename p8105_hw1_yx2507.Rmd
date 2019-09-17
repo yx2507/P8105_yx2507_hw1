@@ -54,3 +54,18 @@ as.numeric(problem_1$vec_factor)
 
 ```
 coercision can change charactor vairable into N/A but can't convert to numeric variable. So it can't be calculated mean. While for logical variable, when converting to numerica vairables, "True" and "False" can be covert to 1 and 0 respectively. For factor variable, they can convert to the number indicating its level.
+
+multiply by random sample
+```{r}
+as.numeric(problem_1$vec_logical)*rnorm(8)
+```
+
+```{r}
+as.factor(problem_1$vec_logical)*rnorm(8)
+```
+
+```{r}
+as.numeric(as.factor(problem_1$vec_logical))*rnorm(8)
+```
+
+

@@ -394,19 +394,19 @@ problem_1</code></pre>
 <pre><code>## # A tibble: 8 x 4
 ##   vec_numeric vec_logical vec_char vec_factor
 ##         &lt;dbl&gt; &lt;lgl&gt;       &lt;chr&gt;    &lt;fct&gt;     
-## 1     -2.02   FALSE       a        M         
-## 2     -1.05   FALSE       b        F         
-## 3     -1.73   FALSE       c        M         
-## 4      0.0404 TRUE        d        F         
-## 5      0.617  TRUE        e        M         
-## 6     -0.531  FALSE       f        F         
-## 7      2.53   TRUE        g        M         
-## 8      0.127  TRUE        h        F</code></pre>
+## 1      0.900  TRUE        a        M         
+## 2     -0.634  FALSE       b        F         
+## 3     -0.666  FALSE       c        M         
+## 4      1.07   TRUE        d        F         
+## 5     -0.579  FALSE       e        M         
+## 6     -0.112  FALSE       f        F         
+## 7      0.0851 TRUE        g        M         
+## 8     -0.153  FALSE       h        F</code></pre>
 <p>now take the mean</p>
 <pre class="r"><code>mean(problem_1$vec_numeric)</code></pre>
-<pre><code>## [1] -0.2515309</code></pre>
+<pre><code>## [1] -0.01146765</code></pre>
 <pre class="r"><code>mean(problem_1$vec_logical)</code></pre>
-<pre><code>## [1] 0.5</code></pre>
+<pre><code>## [1] 0.375</code></pre>
 <p>numeric vairable and logical variable work</p>
 <pre class="r"><code>mean(problem_1$vec_char)</code></pre>
 <pre><code>## Warning in mean.default(problem_1$vec_char): argument is not numeric or
@@ -422,10 +422,21 @@ problem_1</code></pre>
 <pre><code>## Warning: NAs introduced by coercion</code></pre>
 <pre><code>## [1] NA NA NA NA NA NA NA NA</code></pre>
 <pre class="r"><code>as.numeric(problem_1$vec_logical)</code></pre>
-<pre><code>## [1] 0 0 0 1 1 0 1 1</code></pre>
+<pre><code>## [1] 1 0 0 1 0 0 1 0</code></pre>
 <pre class="r"><code>as.numeric(problem_1$vec_factor)</code></pre>
 <pre><code>## [1] 2 1 2 1 2 1 2 1</code></pre>
 <p>coercision can change charactor vairable into N/A but can’t convert to numeric variable. So it can’t be calculated mean. While for logical variable, when converting to numerica vairables, “True” and “False” can be covert to 1 and 0 respectively. For factor variable, they can convert to the number indicating its level.</p>
+<p>multiply by random sample</p>
+<pre class="r"><code>as.numeric(problem_1$vec_logical)*rnorm(8)</code></pre>
+<pre><code>## [1]  0.9808661  0.0000000  0.0000000 -1.9807235  0.0000000  0.0000000
+## [7]  2.3488296  0.0000000</code></pre>
+<pre class="r"><code>as.factor(problem_1$vec_logical)*rnorm(8)</code></pre>
+<pre><code>## Warning in Ops.factor(as.factor(problem_1$vec_logical), rnorm(8)): &#39;*&#39; not
+## meaningful for factors</code></pre>
+<pre><code>## [1] NA NA NA NA NA NA NA NA</code></pre>
+<pre class="r"><code>as.numeric(as.factor(problem_1$vec_logical))*rnorm(8)</code></pre>
+<pre><code>## [1]  0.1771831  0.8335812 -0.4148495 -2.3590321  0.4872792 -1.7874417
+## [7]  0.5952029  1.5808583</code></pre>
 </div>
 </div>
 </div>
