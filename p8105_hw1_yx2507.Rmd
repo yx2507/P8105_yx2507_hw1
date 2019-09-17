@@ -46,3 +46,11 @@ mean(problem_1$vec_char)
 mean(problem_1$vec_fator)
 ```
 
+##convert chractor,logical and numeric variable into numeric
+```{r}
+as.numeric(problem_1$vec_char)
+as.numeric(problem_1$vec_logical)
+as.numeric(problem_1$vec_factor)
+
+```
+coercision can change charactor vairable into N/A but can't convert to numeric variable. So it can't be calculated mean. While for logical variable, when converting to numerica vairables, "True" and "False" can be covert to 1 and 0 respectively. For factor variable, they can convert to the number indicating its level.
