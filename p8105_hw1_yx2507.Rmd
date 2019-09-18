@@ -1,6 +1,7 @@
 ---
 title: "P8105_hw1_yx2507"
 output: github_document
+# Yuqing Xue 9/18/2019
 ---
 
 ```{r setup, include=FALSE}
@@ -9,17 +10,22 @@ knitr::opts_chunk$set(echo = TRUE)
 
 
 ```{r}
+
 library(tidyverse)
 
 ```
-# problem 1
+# Problem 1
 
-## making data frame
+## Making data frame with different variable types
 
-Create a data frame comprised of: a random sample of size 8 from a standard Normal distribution; a logical vector indicating whether elements of the sample are greater than 0; a character vector of length 8; a factor vector of length 8, with 3 different factor “levels”. Below shows the code and the result:
+First, create a data frame comprised of: 
+ *a random sample of size 8 from a standard Normal distribution; 
+ *a logical vector indicating whether elements of the sample are greater than 0; 
+ *a character vector of length 8; a factor vector of length 8, with 3 different factor “levels”. 
+Below shows the code and the result:
 
 ```{r}   
- problem_1=tibble(
+ problem_1 = tibble(
    vec_numeric=rnorm(8),
    vec_logical=vec_numeric>0,
    vec_char=c("a","b","c","d","e","f","g","h"),
@@ -32,13 +38,16 @@ problem_1
 ```
 Data frame called problem_1 is created, containing four vairables: numeric varaiable"vec_numeric", logical variable"vec_logical", character variable"vec_char" and factor varaible called"vec_factor".
 
-## now take the mean
-The result shows that numeric vairable and logical variable work while factor and character vairable can't get the mean.
+## Mean calculation
+Try to take the mean of each varrable in the dataset problem_1. The `mean()`function works for numeric vairable `vec_numeric` and also works for logical variable`vec_logical`because it will convert `True`to 1 and `False ` to 0. Code and results are shown below:
+
 ```{r}
 mean(problem_1$vec_numeric)
 mean(problem_1$vec_logical)
 
 ```
+When trying to calculate the mean for character variable "vec_char" and factor variable"vec_factor", warning shows up with N/A result. Mean function doesn't support these two variable types.
+Code and results are shown below:
 
 ```{r}
 mean(problem_1$vec_char)
@@ -46,28 +55,33 @@ mean(problem_1$vec_fator)
 ```
 
 ## Conercion
-use `as.numeric`to convert character, logical and factor variables into numeric varaibles, use `evel=false`to hide the result and show the code chunk
+Use `as.numeric`to convert character, logical and factor variables into numeric varaibles, use `evel=false`to hide the result and show the code chunk.
+
+Coercision can change charactor vairable into N/A but can't convert to numeric variable. So it can't be calculated mean. While for logical variable, when converting to numerica vairables, "True" and "False" can be covert to 1 and 0 respectively. For factor variable, they can convert to the number indicating its level.
+
 ```{r eval=FALSE}
 as.numeric(problem_1$vec_char)
 as.numeric(problem_1$vec_logical)
 as.numeric(problem_1$vec_factor)
 
 ```
-coercision can change charactor vairable into N/A but can't convert to numeric variable. So it can't be calculated mean. While for logical variable, when converting to numerica vairables, "True" and "False" can be covert to 1 and 0 respectively. For factor variable, they can convert to the number indicating its level.
 
-## multiply by random sample
+
+## Multiply by random sample
 In the below steps:
 * convert the logical vector to numeric, and multiply the random sample by the result
 * convert the logical vector to a factor, and multiply the random sample by the result
 * convert the logical vector to a factor and then convert the result to numeric, and multiply the random sample by the result
+Code and results are shown below:
+When change type to numeric varaible, we can get the product after it multiply by a random sample:
 ```{r}
 as.numeric(problem_1$vec_logical)*rnorm(8)
 ```
-
+It's now meaningful to multiply a factor vairable which is converted from a logical variable to and random sample. N/A and warning sign shows up in the result.
 ```{r}
 as.factor(problem_1$vec_logical)*rnorm(8)
 ```
-
+But, after conver to a factor variable, it works after convert the factor varaible to a numeric vairable and then multiply a random sample.
 ```{r}
 as.numeric(as.factor(problem_1$vec_logical))*rnorm(8)
 ```
@@ -97,27 +111,33 @@ head(plot_df)
 
 ```
 
-the number of rows in `plot_df` is `r nrow(plot_df)` columns is `r ncol(plot_df)`. The mean of x in the dataframe is `r mean(pull(plot_df, x))`. The median of the sample is `r median(pull(plot_df, x))`.The standard deviation of the sample is`r sd(pull(plot_df,x))` The proportion of x+y>1 is `r mean(pull(plot_df,x+y))`
+The number of rows in `plot_df` is `r nrow(plot_df)` columns is `r ncol(plot_df)`. The mean of x in the dataframe is `r mean(pull(plot_df, x))`. The median of the sample is `r median(pull(plot_df, x))`.The standard deviation of the sample is`r sd(pull(plot_df,x))` The proportion of x+y>1 is `r mean(pull(plot_df,x+y))`
 
-## create scatterplot
+## Create scatterplot
 
-color the logical vairable
+Make a scatterplot of `y` and `x`, and color points using logical variable`vec_logical_plot`,factor variable `vec_fact ` and numeric variable` vec_num` separately.
+
+1. color the logical vairable
 ```{r}
 ggplot(plot_df, aes(x = x, y = y, color=vec_logical_plot)) + geom_point()
 
 ```
-color the factor variable
+
+2. color the factor variable
 ```{r}
 ggplot(plot_df, aes(x = x, y = y, color=vec_fact)) + geom_point()
 ```
-colort the numeric varaible
+
+3. colort the numeric varaible
 ```{r}
 ggplot(plot_df, aes(x = x, y = y, color=vec_num)) + geom_point()
 ```
 
+When the points are colored using nemeric variable, the color scale is shown as a continuous ranging from 0 to 1. If the points are colored by factor and logical varaible, the color scale will just show "false" and "true" regarding of the of color it used.
 
-## export the this scatterplot
+## Export the this scatterplot
 
+Using `ggsave` to export the scatterplot to a pdf document named"scatter_plot.pdf"..
 
 ```{r}
 ggsave("scatter_plot.pdf",height=4,width=6)
