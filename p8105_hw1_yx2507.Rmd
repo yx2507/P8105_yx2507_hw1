@@ -1,11 +1,12 @@
 ---
-title: "p8105_hw1_yx2507"
+title: "P8105_hw1_yx2507"
 output: github_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
 
 ```{r}
 library(tidyverse)
@@ -29,7 +30,7 @@ Create a data frame comprised of: a random sample of size 8 from a standard Norm
 problem_1
 
 ```
-
+Data frame called problem_1 is created, containing four vairables: numeric varaiable"vec_numeric", logical variable"vec_logical", character variable"vec_char" and factor varaible called"vec_factor".
 
 ## now take the mean
 The result shows that numeric vairable and logical variable work while factor and character vairable can't get the mean.
