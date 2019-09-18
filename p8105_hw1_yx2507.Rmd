@@ -46,11 +46,8 @@ mean(problem_1$vec_fator)
 ```
 
 ## Conercion
-Tn the below steps:
-* convert the logical vector to numeric, and multiply the random sample by the result
-* convert the logical vector to a factor, and multiply the random sample by the result
-* convert the logical vector to a factor and then convert the result to numeric, and multiply the random sample by the result
-```{r}
+use `as.numeric`to convert character, logical and factor variables into numeric varaibles, use `evel=false`to hide the result and show the code chunk
+```{r eval=FALSE}
 as.numeric(problem_1$vec_char)
 as.numeric(problem_1$vec_logical)
 as.numeric(problem_1$vec_factor)
@@ -59,6 +56,10 @@ as.numeric(problem_1$vec_factor)
 coercision can change charactor vairable into N/A but can't convert to numeric variable. So it can't be calculated mean. While for logical variable, when converting to numerica vairables, "True" and "False" can be covert to 1 and 0 respectively. For factor variable, they can convert to the number indicating its level.
 
 ## multiply by random sample
+In the below steps:
+* convert the logical vector to numeric, and multiply the random sample by the result
+* convert the logical vector to a factor, and multiply the random sample by the result
+* convert the logical vector to a factor and then convert the result to numeric, and multiply the random sample by the result
 ```{r}
 as.numeric(problem_1$vec_logical)*rnorm(8)
 ```
