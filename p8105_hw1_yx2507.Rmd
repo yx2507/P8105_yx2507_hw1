@@ -1,15 +1,15 @@
 ---
 title: "P8105_hw1_yx2507"
 output: github_document
-# Yuqing Xue 9/18/2019
 ---
+## Yuqing Xue 9/18/2019
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
 
-```{r}
+```{r include=FALSE}
 
 library(tidyverse)
 
@@ -59,7 +59,7 @@ Use `as.numeric`to convert character, logical and factor variables into numeric 
 
 Coercision can change charactor vairable into N/A but can't convert to numeric variable. So it can't be calculated mean. While for logical variable, when converting to numerica vairables, "True" and "False" can be covert to 1 and 0 respectively. For factor variable, they can convert to the number indicating its level.
 
-```{r eval=FALSE}
+```{r include=FALSE}
 as.numeric(problem_1$vec_char)
 as.numeric(problem_1$vec_logical)
 as.numeric(problem_1$vec_factor)
@@ -137,7 +137,7 @@ When the points are colored using nemeric variable, the color scale is shown as 
 
 ## Export the this scatterplot
 
-Using `ggsave` to export the scatterplot to a pdf document named"scatter_plot.pdf"..
+Using `ggsave` to export the scatterplot to a pdf document named"scatter_plot.pdf".
 
 ```{r}
 ggsave("scatter_plot.pdf",height=4,width=6)
