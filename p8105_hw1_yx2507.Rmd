@@ -80,15 +80,15 @@ In the below steps:
 Code and results are shown below:
 When change type to numeric varaible, we can get the product after it multiply by a random sample:
 ```{r}
-as.numeric(problem_1$vec_logical)*rnorm(8)
+as.numeric(problem_1$vec_logical)*(problem_1$vec_numeric)
 ```
 It's now meaningful to multiply a factor vairable which is converted from a logical variable to and random sample. N/A and warning sign shows up in the result.
 ```{r}
-as.factor(problem_1$vec_logical)*rnorm(8)
+as.factor(problem_1$vec_logical)*(problem_1$vec_numeric)
 ```
 But, after conver to a factor variable, it works after convert the factor varaible to a numeric vairable and then multiply a random sample.
 ```{r}
-as.numeric(as.factor(problem_1$vec_logical))*rnorm(8)
+as.numeric(as.factor(problem_1$vec_logical))*(problem_1$vec_numeric)
 ```
 
 # Problem 2 Including Plots
