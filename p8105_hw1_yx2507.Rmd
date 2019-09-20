@@ -24,14 +24,15 @@ First, create a data frame comprised of:
  *a character vector of length 8; a factor vector of length 8, with 3 different factor “levels”. 
 Below shows the code and the result:
 
-```{r}   
+```{r}
+set.seed(1)
  problem_1 = tibble(
    vec_numeric=rnorm(8),
    vec_logical=vec_numeric>0,
    vec_char=c("a","b","c","d","e","f","g","h"),
    vec_factor = factor(c("M","F","M","F","M","F","M","F"))
-
  ) 
+ 
 #CHECK DATA FRAME
 problem_1
 
@@ -43,6 +44,7 @@ Try to take the mean of each varrable in the dataset problem_1. The `mean()`func
 
 ```{r}
 mean(problem_1$vec_numeric)
+
 mean(problem_1$vec_logical)
 
 ```
@@ -51,6 +53,7 @@ Code and results are shown below:
 
 ```{r}
 mean(problem_1$vec_char)
+
 mean(problem_1$vec_fator)
 ```
 
@@ -61,7 +64,9 @@ Coercision can change charactor vairable into N/A but can't convert to numeric v
 
 ```{r include=FALSE}
 as.numeric(problem_1$vec_char)
+
 as.numeric(problem_1$vec_logical)
+
 as.numeric(problem_1$vec_factor)
 
 ```
@@ -98,7 +103,7 @@ A numeric vector created by coercing the above logical vector
 A factor vector created by coercing the above logical vector
 
 ```{r}
-set.seed(2)
+set.seed(1)
   x=rnorm(500)
   y=rnorm(500)
   vec_logical_plot= x + y > 1
